@@ -7,15 +7,14 @@
     use Zend\View\Model\ViewModel;
     use Zend\View\Renderer\RendererInterface;
     use Zend\Mime;
-
+    use Zend\ServiceManager\ServiceLocatorInterface;
+    
     /**
      * Class Service
      * @package Mail
      */
     class Service implements ServiceLocatorAwareInterface
     {
-        use ServiceLocatorAwareTrait;
-
         /**
          * @var RendererInterface
          */
@@ -191,5 +190,28 @@
                 $this->transport = $this->getConfig()->getTransport();
             }
             return $this->transport;
+        }
+        
+        /**
+         * Set service locator
+         *
+         * @param ServiceLocatorInterface $serviceLocator
+         * @return mixed
+         */
+        public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+        {
+            $this->serviceLocator = $serviceLocator;
+
+            return $this;
+        }
+
+        /**
+         * Get service locator
+         *
+         * @return ServiceLocatorInterface
+         */
+        public function getServiceLocator()
+        {
+            return $this->serviceLocator;
         }
     }

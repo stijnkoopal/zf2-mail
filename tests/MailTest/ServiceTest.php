@@ -10,23 +10,25 @@
     {
         public function testRendersEmpty()
         {
-            $config = [
-                'from' => [
-                    'default' => [
+            $config = array(
+                'from' => array(
+                    'default' => array(
                         'email' => 'test@test.com'
-                    ]
-                ],
-                'mails' => [
-                    'test' => []
-                ]
-            ];
+                    )
+                ),
+                'mails' => array(
+                    'test' => array()
+                )
+            );
             $service = $this->getService($config);
             
             $message = $service->sendMail(new ZendMail\Message(), 'test'); 
             
-            $this->assertCount(1, $message->getBody()->getParts());
-            $this->assertEmpty($message->getBody()->getParts()[0]->getContent());
-            $this->assertEquals('text/plain', $message->getBody()->getParts()[0]->type);
+            $parts = $message->getBody()->getParts();
+            
+            $this->assertCount(1, $parts);
+            $this->assertEmpty($parts[0]->getContent());
+            $this->assertEquals('text/plain', $parts[0]->type);
         }
         
         public function getService(array $config)

@@ -15,8 +15,6 @@
             ),
             'layouts' => array(
                 'default' => array(
-                    'txt' => 'my-application-email-txt',
-                    'html' => 'my-application-email-layout'
                 )
             )
         ),

@@ -144,13 +144,13 @@
         public function getTransport()
         {
             if (!isset($this->config['transport'])) {
-                $this->config['transport'] = [];
+                $this->config['transport'] = array();
             }
             if (!isset($this->config['transport']['type'])) {
                 $this->config['transport']['type'] = 'sendmail';
             }
             if (!isset($this->config['transport']['options'])) {
-                $this->config['transport']['options'] = [];
+                $this->config['transport']['options'] = array();
             }
 
             $type = strtolower($this->config['transport']['type']);

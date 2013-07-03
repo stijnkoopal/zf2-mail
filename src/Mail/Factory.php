@@ -19,7 +19,7 @@
             $config = $locator->get('config');
             $emailConfig = $config['mail'];
 
-            $renderer = $locator->get('viewmanager');
+            $renderer = $locator->get('viewrenderer');
             return new Service(new Config($emailConfig), $renderer);
         }
     }

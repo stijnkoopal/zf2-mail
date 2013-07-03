@@ -19,26 +19,8 @@
      */
     class Module implements
         Feature\ConfigProviderInterface,
-        Feature\AutoloaderProviderInterface,
         Feature\ServiceProviderInterface
     {
-        /**
-         * @return array
-         */
-        public function getAutoloaderConfig()
-        {
-            return array(
-                'Zend\Loader\ClassMapAutoloader' => array(
-                    __DIR__ . '/autoload_classmap.php',
-                ),
-                Loader\AutoloaderFactory::STANDARD_AUTOLOADER => array(
-                    'namespaces' => array(
-                        __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                    ),
-                ),
-            );
-        }
-
         /**
          * @return array|mixed|\Zend\ServiceManager\Config
          */

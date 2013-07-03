@@ -31,7 +31,8 @@
         protected $transport;
 
         /**
-         * @param $config
+         * @param array|\Traversable $config
+         * @param RendererInterface $renderer
          */
         public function __construct(Config $config, RendererInterface $renderer)
         {
@@ -59,7 +60,6 @@
 
         /**
          * @param ZendMail\Message $message
-         * @param string $message
          * @param array $variables
          * @return ZendMail\Message
          */

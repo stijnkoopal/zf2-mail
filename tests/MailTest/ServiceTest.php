@@ -64,7 +64,7 @@
             $service = $this->getService($config);
             $service->setRenderer($this->getTestRenderer());
             
-            $this->assertEquals("plain-layout", $service->renderMessage('test', Config::TYPE_PLAIN, array()));
+            $this->assertEquals('plain-layout', $service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
         
         public function testRendersWithLayout()
@@ -88,9 +88,64 @@
             $service = $this->getService($config);
             $service->setRenderer($this->getTestRenderer());
             
-            $this->assertStringStartsWith("plain-layoutplain", $service->renderMessage('test', Config::TYPE_PLAIN, array()));
+            $this->assertEquals('plain-layoutplain', $service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
-        
+
+        public function testSendsMailWithBothPlainAndHtml()
+        {
+            $config = array(
+                'from' => array(
+                    'default' => array(
+                        'email' => 'test@test.com'
+                    )
+                ),
+                'mails' => array(
+                    'test' => array(
+                        'template' => array(
+                            'plain' => 'plain',
+                            'html' => 'html'
+                        )
+                    )
+                )
+            );
+
+            $service = $this->getService($config);
+            $service->setRenderer($this->getTestRenderer());
+
+            $result = $service->sendMail(new ZendMail\Message(), 'test');
+            $parts = $result->getBody()->getParts();
+
+            $this->assertCount(2, $parts);
+            $this->assertEquals('text/plain', $parts[0]->type);
+            $this->assertEquals('text/html', $parts[1]->type);
+            $this->assertEquals('plain', $parts[0]->getContent());
+            $this->assertEquals('html', $parts[1]->getContent());
+        }
+
+        public function testMessageIsSend()
+        {
+            $config = array(
+                'from' => array(
+                    'default' => array(
+                        'email' => 'test@test.com'
+                    )
+                ),
+                'mails' => array(
+                    'test' => array(
+                    )
+                )
+            );
+
+            $service = $this->getService($config);
+            $transportMock = $this->getMock('Zend\Mail\Transport\TransportInterface');
+            $transportMock
+                ->expects($this->once())
+                ->method('send');
+            $service->setTransport($transportMock);
+
+            $service->sendMail(new ZendMail\Message(), 'test');
+        }
+
         /**
          * @return PhpRenderer
          */

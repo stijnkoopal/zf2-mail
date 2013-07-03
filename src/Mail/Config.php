@@ -71,7 +71,7 @@
             if (isset($email['from']) && isset($this->config['from'][$email['from']])) {
                 $emailAddress = $this->getFromEmail($email['from']);
                 $name = isset($this->config['from'][$email['from']]['name']) ? $this->config['from'][$email['from']]['name'] : null;
-                return ['name' => $name, 'email' => $emailAddress];
+                return array('name' => $name, 'email' => $emailAddress);
             }
             return null;
         }

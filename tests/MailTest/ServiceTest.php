@@ -13,11 +13,6 @@
         public function testRendersEmptyWithNoTemplates()
         {
             $config = array(
-                'from' => array(
-                    'default' => array(
-                        'email' => 'test@test.com'
-                    )
-                ),
                 'mails' => array(
                     'test' => array()
                 )
@@ -31,11 +26,6 @@
         public function testRendersEmpty()
         {
             $config = array(
-                'from' => array(
-                    'default' => array(
-                        'email' => 'test@test.com'
-                    )
-                ),
                 'mails' => array(
                     'test' => array(
                         'template' => array(
@@ -53,19 +43,20 @@
             $this->assertEmpty($service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
         
-        public function testRendersWithLayout()
+        public function testRendersEmptyWithLayout()
         {
             $config = array(
-                'from' => array(
-                    'default' => array(
-                        'email' => 'test@test.com'
+                'layouts' => array(
+                    'test-layout' => array(
+                        'plain' => 'plain-layout'
                     )
                 ),
                 'mails' => array(
                     'test' => array(
                         'template' => array(
                             'plain' => 'empty'
-                        )
+                        ),
+                        'layout' => 'test-layout'
                     )
                 )
             );
@@ -73,7 +64,31 @@
             $service = $this->getService($config);
             $service->setRenderer($this->getTestRenderer());
             
-            $this->assertEmpty($service->renderMessage('test', Config::TYPE_PLAIN, array()));
+            $this->assertEquals("plain-layout", $service->renderMessage('test', Config::TYPE_PLAIN, array()));
+        }
+        
+        public function testRendersWithLayout()
+        {
+            $config = array(
+                'layouts' => array(
+                    'test-layout' => array(
+                        'plain' => 'plain-layout'
+                    )
+                ),
+                'mails' => array(
+                    'test' => array(
+                        'template' => array(
+                            'plain' => 'plain'
+                        ),
+                        'layout' => 'test-layout'
+                    )
+                )
+            );
+            
+            $service = $this->getService($config);
+            $service->setRenderer($this->getTestRenderer());
+            
+            $this->assertStringStartsWith("plain-layoutplain", $service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
         
         /**

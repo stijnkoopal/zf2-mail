@@ -132,8 +132,8 @@
         public function getSubjectTemplate($emailAlias)
         {
             $email = $this->getEmailAlias($emailAlias);
-            if (isset($email['templates']['subject'])) {
-                return $email['templates']['subject'];
+            if (isset($email['template']['subject'])) {
+                return $email['template']['subject'];
             }
             return null;
         }

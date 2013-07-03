@@ -96,7 +96,7 @@
             $config = new Config(array(
                 'mails' => array(
                     'test' => array(
-                        'templates' => array(
+                        'template' => array(
                             'subject' => 'test-subject'
                         ),
                         'subject' => 'right-subject'
@@ -112,7 +112,7 @@
             $config = new Config(array(
                 'mails' => array(
                     'test' => array(
-                        'templates' => array(
+                        'template' => array(
                             'subject' => 'right-subject'
                         )
                     )

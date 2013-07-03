@@ -188,7 +188,7 @@
 
             $result = $this->config['mails'][$alias];
             if (!is_array($result)) {
-                $result = [$result];
+                $result = array($result);
             }
 
             if (!isset($result['layout'])) {
@@ -198,7 +198,7 @@
                 $result['from'] = 'default';
             }
             if (!isset($result['template'])) {
-                $result['template'] = [];
+                $result['template'] = array();
             }
             return $result;
         }

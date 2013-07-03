@@ -63,7 +63,7 @@
          * @param array $variables
          * @return ZendMail\Message
          */
-        public function sendMail(ZendMail\Message $message, $emailAlias, array $variables = [])
+        public function sendMail(ZendMail\Message $message, $emailAlias, array $variables = array())
         {
             $renderer = $this->getRenderer();
 
@@ -75,9 +75,9 @@
             }
 
             if (null !== $template = $this->getConfig()->getLayoutTemplate($emailAlias, Config::TYPE_PLAIN)) {
-                $viewModel = new ViewModel(array_merge($variables, [
+                $viewModel = new ViewModel(array_merge($variables, array(
                     'content' => $plain
-                ]));
+                )));
                 $viewModel->setTemplate($template);
                 $plain = $renderer->render($viewModel);
             }
@@ -90,9 +90,9 @@
             }
 
             if (null !== $template = $this->getConfig()->getLayoutTemplate($emailAlias, Config::TYPE_HTML)) {
-                $viewModel = new ViewModel(array_merge($variables, [
+                $viewModel = new ViewModel(array_merge($variables, array(
                     'content' => $html
-                ]));
+                )));
                 $viewModel->setTemplate($template);
                 $html = $renderer->render($viewModel);
             }
@@ -105,15 +105,15 @@
                 $plainPart = new Mime\Part($plain);
                 $plainPart->type = 'text/plain';
 
-                $body->setParts([$plainPart, $htmlPart]);
+                $body->setParts(array($plainPart, $htmlPart));
             } elseif (!empty($html)) {
                 $htmlPart = new Mime\Part($html);
                 $htmlPart->type = 'text/html';
-                $body->setParts([$htmlPart]);
+                $body->setParts(array($htmlPart));
             } else {
                 $plainPart = new Mime\Part($html);
                 $plainPart->type = 'text/plain';
-                $body->setParts([$plainPart]);
+                $body->setParts(array($plainPart));
             }
 
             $from = $this->getConfig()->getFrom($emailAlias);

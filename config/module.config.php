@@ -1,7 +1,7 @@
 <?php
     namespace Mail;
 
-    return [
+    return array(
         'mail' => array(
             'domains' => array(
                 'default' => 'my-application.com'
@@ -18,4 +18,4 @@
                 )
             )
         ),
-    ];
+    );

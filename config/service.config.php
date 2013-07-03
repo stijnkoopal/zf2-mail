@@ -1,8 +1,8 @@
 <?php
     namespace Mail;
 
-    return [
+    return array(
         'factories' => array(
             'Mail\Service' => 'Mail\Factory'
         )
-    ];
+    );

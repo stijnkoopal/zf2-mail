@@ -1,21 +1,21 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
     use Zend\ServiceManager\ServiceLocatorAwareInterface;
 
     /**
      * Class MailServiceProviderTrait
-     * @package Mail
+     * @package Mailing
      */
     trait MailServiceProviderTrait
     {
         /**
-         * @var MailService
+         * @var Service
          */
         protected $mailService;
 
         /**
-         * @return MailService
+         * @return Service
          */
         public function getMailService()
         {
@@ -26,10 +26,10 @@
         }
 
         /**
-         * @param MailService $service
+         * @param Service $service
          * @return $this
          */
-        public function setMailService(MailService $service)
+        public function setMailService(Service $service)
         {
             $this->mailService = $service;
             return $this;

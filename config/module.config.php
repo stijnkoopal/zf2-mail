@@ -1,5 +1,5 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
     return array(
         'mail' => array(

@@ -1,7 +1,6 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
-    use Mail\Exception\InvalidArgumentException;
     use Zend\Mail as ZendMail;
     use Zend\ServiceManager\ServiceLocatorAwareTrait;
     use Zend\Stdlib\ArrayUtils;
@@ -178,7 +177,7 @@
         /**
          * @param string $alias
          * @return array
-         * @throws \Mail\Exception\InvalidArgumentException
+         * @throws Exception\InvalidArgumentException
          */
         protected function getEmailAlias($alias)
         {

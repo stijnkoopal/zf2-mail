@@ -1,8 +1,8 @@
 <?php
-    namespace MailTest;
+    namespace MailingTest;
 
-    use Mail\Service;
-    use Mail\Config;
+    use Mailing\Service;
+    use Mailing\Config;
     use PHPUnit_Framework_TestCase as PHPUnitTestCase;
     use Zend\Mail as ZendMail;
     use Zend\View\Renderer\PhpRenderer;

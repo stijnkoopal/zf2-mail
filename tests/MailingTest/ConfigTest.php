@@ -1,7 +1,7 @@
 <?php
-    namespace MailTest;
+    namespace MailingTest;
 
-    use Mail\Config;
+    use Mailing\Config;
     use PHPUnit_Framework_TestCase as PHPUnitTestCase;
 
     class ConfigTest extends PHPUnitTestCase
@@ -82,7 +82,7 @@
         }
         
         /**
-         * @expectedException Mail\Exception\InvalidArgumentException
+         * @expectedException \Mailing\Exception\InvalidArgumentException
          */
         public function testEmailAliasIsDefined()
         {

@@ -1,5 +1,5 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
     use Acl\Role\Administrator;
     use Acl\Role\Player;
@@ -15,7 +15,7 @@
 
     /**
      * Class Module
-     * @package Mail
+     * @package Mailing
      */
     class Module implements
         Feature\ConfigProviderInterface,

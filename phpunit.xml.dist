@@ -5,8 +5,8 @@
          backupStaticAttributes="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Mail">
-            <directory suffix=".php">./tests/MailTest</directory>
+        <testsuite name="Mailing">
+            <directory suffix=".php">./tests/MailingTest</directory>
         </testsuite>
     </testsuites>
 </phpunit>

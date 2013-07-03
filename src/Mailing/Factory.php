@@ -1,12 +1,12 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
     use Zend\ServiceManager\FactoryInterface;
     use Zend\ServiceManager\ServiceLocatorInterface;
 
     /**
      * Class Factory
-     * @package Mail\Service
+     * @package Mailing\Service
      */
     class Factory implements FactoryInterface
     {

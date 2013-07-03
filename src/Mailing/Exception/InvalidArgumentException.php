@@ -1,9 +1,9 @@
 <?php
-    namespace Mail\Exception;
+    namespace Mailing\Exception;
 
     /**
      * Class InvalidArgumentException
-     * @package Mail\Exception
+     * @package Mailing\Exception
      */
     class InvalidArgumentException extends \InvalidArgumentException
     {

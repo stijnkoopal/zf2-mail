@@ -1,5 +1,5 @@
 <?php
-    namespace Mail;
+    namespace Mailing;
 
     use Zend\Mail as ZendMail;
     use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -11,7 +11,7 @@
     
     /**
      * Class Service
-     * @package Mail
+     * @package Mailing
      */
     class Service
     {
@@ -31,7 +31,7 @@
         protected $transport;
 
         /**
-         * @param array|\Traversable $config
+         * @param Config $config
          * @param RendererInterface $renderer
          */
         public function __construct(Config $config, RendererInterface $renderer)
@@ -41,7 +41,7 @@
         }
 
         /**
-         * @return \Mail\Config
+         * @return Config
          */
         public function getConfig()
         {
@@ -49,7 +49,7 @@
         }
 
         /**
-         * @param \Mail\Config $config
+         * @param Config $config
          * @return $this
          */
         public function setConfig(Config $config)
@@ -60,8 +60,10 @@
 
         /**
          * @param ZendMail\Message $message
+         * @param string $emailAlias
          * @param array $variables
          * @return ZendMail\Message
+         * @throws Exception\RuntimeException
          */
         public function sendMail(ZendMail\Message $message, $emailAlias, array $variables = array())
         {

@@ -153,8 +153,9 @@
                 )
             ));
             
-            $this->assertEquals('noreply@bla-domain.com', $config->getFrom('test')['email']);
-            $this->assertEquals('noreply-name', $config->getFrom('test')['name']);
+            $from = $config->getFrom('test');
+            $this->assertEquals('noreply@bla-domain.com', $from['email']);
+            $this->assertEquals('noreply-name', $from['name']);
         }
           
         public function testFromHasCorrectEmailWithDomain()
@@ -178,7 +179,9 @@
                 )
             ));
             
-            $this->assertEquals('noreply@my-domain.nl', $config->getFrom('test')['email']);
-            $this->assertEquals('noreply-name', $config->getFrom('test')['name']);
+            $from = $config->getFrom('test');
+            
+            $this->assertEquals('noreply@my-domain.nl', $from['email']);
+            $this->assertEquals('noreply-name', $from['name']);
         }
     }

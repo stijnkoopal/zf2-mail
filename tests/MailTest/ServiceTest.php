@@ -20,15 +20,9 @@
                     'test' => array()
                 )
             );
+            
             $service = $this->getService($config);
-            
-            $message = $service->sendMail(new ZendMail\Message(), 'test'); 
-            
-            $parts = $message->getBody()->getParts();
-            
-            $this->assertCount(1, $parts);
-            $this->assertEmpty($parts[0]->getContent());
-            $this->assertEquals('text/plain', $parts[0]->type);
+            $this->assertEmpty($service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
         
         public function getService(array $config)

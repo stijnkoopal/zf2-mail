@@ -65,38 +65,9 @@
          */
         public function sendMail(ZendMail\Message $message, $emailAlias, array $variables = array())
         {
-            $renderer = $this->getRenderer();
-
-            $plain = '';
-            if (null !== $template = $this->getConfig()->getTemplate($emailAlias, Config::TYPE_PLAIN)) {
-                $viewModel = new ViewModel($variables);
-                $viewModel->setTemplate($template);
-                $plain = $renderer->render($viewModel);
-            }
-
-            if (null !== $template = $this->getConfig()->getLayoutTemplate($emailAlias, Config::TYPE_PLAIN)) {
-                $viewModel = new ViewModel(array_merge($variables, array(
-                    'content' => $plain
-                )));
-                $viewModel->setTemplate($template);
-                $plain = $renderer->render($viewModel);
-            }
-
-            $html = '';
-            if (null !== $template = $this->getConfig()->getTemplate($emailAlias, Config::TYPE_HTML)) {
-                $viewModel = new ViewModel($variables);
-                $viewModel->setTemplate($template);
-                $html = $renderer->render($viewModel);
-            }
-
-            if (null !== $template = $this->getConfig()->getLayoutTemplate($emailAlias, Config::TYPE_HTML)) {
-                $viewModel = new ViewModel(array_merge($variables, array(
-                    'content' => $html
-                )));
-                $viewModel->setTemplate($template);
-                $html = $renderer->render($viewModel);
-            }
-
+            $plain = $this->renderMessage($emailAlias, Config::TYPE_PLAIN);
+            $html = $this->renderMessage($emailAlias, Config::TYPE_HTML);
+            
             $body = new Mime\Message();
             if (!empty($html) && !empty($plain)) {
                 $htmlPart = new Mime\Part($html);
@@ -135,10 +106,37 @@
 
         /**
          * @param string $emailAlias
+         * @param string $type
+         * @param array $variables
+         * @return string
+         */
+        public function renderMessage ($emailAlias, $type, array $variables = array())
+        {
+            $renderer = $this->getRenderer();
+            
+            $result = '';
+            if (null !== $template = $this->getConfig()->getTemplate($emailAlias, $type)) {
+                $viewModel = new ViewModel($variables);
+                $viewModel->setTemplate($template);
+                $result = $renderer->render($viewModel);
+            }
+
+            if (null !== $template = $this->getConfig()->getLayoutTemplate($emailAlias, $type)) {
+                $viewModel = new ViewModel(array_merge($variables, array(
+                    'content' => $result
+                )));
+                $viewModel->setTemplate($template);
+                $result = $renderer->render($viewModel);
+            }
+            return $result;
+        }
+        
+        /**
+         * @param string $emailAlias
          * @param array $variables
          * @return null|string
          */
-        public function getSubject($emailAlias, array $variables = [])
+        public function getSubject($emailAlias, array $variables = array())
         {
             if (null !== $subject = $this->getConfig()->getSubject($emailAlias)) {
                 return $subject;

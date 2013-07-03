@@ -1,0 +1,31 @@
+{
+    "name": "stijnkoopal/zf2-mail",
+    "type": "library",
+    "description": "Zend Framework 2 module that provides a highly configurable mail service",
+    "keywords": ["mail"],
+    "homepage": "https://github.com/stijnkoopal/zf2-mail",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stijn Koopal",
+            "email": "s.tijn.koop.al@gmail.com",
+            "homepage": "https://github.com/stijnkoopal/zf2-mail",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "zendframework/zendframework": "2.*"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-0": {
+            "Mail": "src"
+        },
+        "classmap": ["Module.php"]
+    }
+}

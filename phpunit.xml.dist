@@ -1,0 +1,12 @@
+<phpunit bootstrap="tests/Bootstrap.php"
+         colors="true"
+         verbose="true"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Mail">
+            <directory suffix=".php">./tests/MailTest</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

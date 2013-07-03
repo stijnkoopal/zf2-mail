@@ -13,7 +13,7 @@
      * Class Service
      * @package Mail
      */
-    class Service implements ServiceLocatorAwareInterface
+    class Service
     {
         /**
          * @var RendererInterface
@@ -33,9 +33,10 @@
         /**
          * @param $config
          */
-        public function __construct(Config $config)
+        public function __construct(Config $config, RendererInterface $renderer)
         {
-            $this->setConfig($config);
+            $this->setConfig($config)
+                ->setRenderer($renderer);
         }
 
         /**
@@ -155,9 +156,6 @@
          */
         public function getRenderer()
         {
-            if (!$this->renderer) {
-                $this->renderer = $this->getServiceLocator()->get('viewrenderer');
-            }
             return $this->renderer;
         }
 
@@ -190,28 +188,5 @@
                 $this->transport = $this->getConfig()->getTransport();
             }
             return $this->transport;
-        }
-        
-        /**
-         * Set service locator
-         *
-         * @param ServiceLocatorInterface $serviceLocator
-         * @return mixed
-         */
-        public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-        {
-            $this->serviceLocator = $serviceLocator;
-
-            return $this;
-        }
-
-        /**
-         * Get service locator
-         *
-         * @return ServiceLocatorInterface
-         */
-        public function getServiceLocator()
-        {
-            return $this->serviceLocator;
         }
     }

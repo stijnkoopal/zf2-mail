@@ -53,6 +53,29 @@
             $this->assertEmpty($service->renderMessage('test', Config::TYPE_PLAIN, array()));
         }
         
+        public function testRendersWithLayout()
+        {
+            $config = array(
+                'from' => array(
+                    'default' => array(
+                        'email' => 'test@test.com'
+                    )
+                ),
+                'mails' => array(
+                    'test' => array(
+                        'template' => array(
+                            'plain' => 'empty'
+                        )
+                    )
+                )
+            );
+            
+            $service = $this->getService($config);
+            $service->setRenderer($this->getTestRenderer());
+            
+            $this->assertEmpty($service->renderMessage('test', Config::TYPE_PLAIN, array()));
+        }
+        
         /**
          * @return PhpRenderer
          */
@@ -73,10 +96,8 @@
          */
         public function getService(array $config)
         {
-            $service = new Service(new Config($config));
-            
             $rendererMock = $this->getMock('Zend\View\Renderer\RendererInterface');
-            $service->setRenderer($rendererMock);
+            $service = new Service(new Config($config), $rendererMock);
             
             $transportMock = $this->getMock('Zend\Mail\Transport\TransportInterface');
             $service->setTransport($transportMock);

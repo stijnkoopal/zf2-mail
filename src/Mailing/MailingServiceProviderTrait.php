@@ -7,7 +7,7 @@
      * Class MailServiceProviderTrait
      * @package Mailing
      */
-    trait MailServiceProviderTrait
+    trait MailingServiceProviderTrait
     {
         /**
          * @var Service

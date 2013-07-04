@@ -3,6 +3,6 @@
 
     return array(
         'factories' => array(
-            'Mail\Service' => 'Mail\Factory'
+            'Mailing\Service' => 'Mailing\Factory'
         )
     );

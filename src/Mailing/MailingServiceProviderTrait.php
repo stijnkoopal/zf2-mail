@@ -12,26 +12,26 @@
         /**
          * @var Service
          */
-        protected $mailService;
+        protected $mailingService;
 
         /**
          * @return Service
          */
-        public function getMailService()
+        public function getMailingService()
         {
-            if (!$this->mailService && $this instanceof ServiceLocatorAwareInterface) {
-                $this->mailService = $this->getServiceLocator()->get('Mail\Service');
+            if (!$this->mailingService && $this instanceof ServiceLocatorAwareInterface) {
+                $this->mailingService = $this->getServiceLocator()->get('Mailing\Service');
             }
-            return $this->mailService;
+            return $this->mailingService;
         }
 
         /**
          * @param Service $service
          * @return $this
          */
-        public function setMailService(Service $service)
+        public function setMailingService(Service $service)
         {
-            $this->mailService = $service;
+            $this->mailingService = $service;
             return $this;
         }
     }

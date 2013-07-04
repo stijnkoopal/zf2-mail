@@ -1,0 +1,8 @@
+<?php
+    return [
+        'mailing' => [
+            'transport' => [
+                'type' => 'sendmail',
+            ]
+        ]
+    ];

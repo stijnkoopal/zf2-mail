@@ -67,8 +67,8 @@
          */
         public function sendMail(ZendMail\Message $message, $emailAlias, array $variables = array())
         {
-            $plain = $this->renderMessage($emailAlias, Config::TYPE_PLAIN);
-            $html = $this->renderMessage($emailAlias, Config::TYPE_HTML);
+            $plain = $this->renderMessage($emailAlias, Config::TYPE_PLAIN, $variables);
+            $html = $this->renderMessage($emailAlias, Config::TYPE_HTML, $variables);
             
             $body = new Mime\Message();
             if (!empty($html) && !empty($plain)) {
